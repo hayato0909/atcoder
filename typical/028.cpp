@@ -15,6 +15,8 @@ int main() {
     int n;
     cin >> n;
     int lx[n+1],ly[n+1],rx[n+1],ry[n+1];
+    map<int, int> ans;
+
     for(int i=1;i<=n;i++) {
         cin >> lx[i] >> ly[i] >> rx[i] >> ry[i];
     }
@@ -24,21 +26,29 @@ int main() {
     }
 
     for(int i=1;i<=n;i++) {
-        for(int x=lx[i];x<rx[i];x++) {
-            for(int y=ly[i];y<ry[i];y++) {
-                board[x][y]++;
-            }
+        board[lx[i]][ly[i]]++;
+        board[rx[i]][ry[i]]++;
+        board[lx[i]][ry[i]]--;
+        board[rx[i]][ly[i]]--;
+    }
+
+    for(int i=1;i<=1000;i++) {
+        for(int j=0;j<=1000;j++) {
+            board[i][j] += board[i-1][j];
         }
     }
 
-    int cnt[n+1];
-    for(int i=0;i<=n;i++) cnt[i] = 0;
-    for(int x=0;x<=1000;x++) {
-        for(int y=0;y<=1000;y++) {
-            cnt[board[x][y]]++;
+    for(int i=1;i<=1000;i++) {
+        for(int j=0;j<=1000;j++) {
+            board[j][i] += board[j][i-1];
         }
     }
 
-    for(int i=1;i<=n;i++) cout << cnt[i] << endl;
-    return 0;
+    for(int i=0;i<=1000;i++) {
+        for(int j=0;j<=1000;j++) {
+            ans[board[i][j]]++;
+        }
+    }
+
+    for(int i=1;i<=n;i++) cout << ans[i] << endl;
 }
