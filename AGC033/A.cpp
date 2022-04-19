@@ -20,14 +20,6 @@ int num[1000][1000];
 int main() {
     cin >> h >> w;
     for(int i=0;i<h;i++) cin >> a[i];
-    for(int i=0;i<h;i++) {
-        for(int j=0;j<w;j++) num[i][j] = 1000000;
-    }
-    for(int i=0;i<h;i++) {
-        for(int j=0;j<w;j++) {
-            if(a[i][j] == '#') bfs(i, j);
-        }
-    }
 
     queue<P> q;
     int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
@@ -41,8 +33,6 @@ int main() {
         }
     }
 
-    int ans;
-
     while(!q.empty()) {
         int x = q.front().first, y = q.front().second;
         q.pop();
@@ -51,12 +41,16 @@ int main() {
             if(0<=xx && xx < h && 0<=yy && yy<w) {
                 if(a[xx][yy] != '#') {
                     num[xx][yy] = num[x][y] + 1;
-                    ans = num[xx][yy];
                     q.push(P(xx, yy));
                     a[xx][yy] = '#';
                 }
             }
         }
+    }
+
+    int ans = 0;
+    for(int i=0;i<h;i++) {
+        for(int j=0;j<w;j++) ans = max(ans, num[i][j]);
     }
     cout << ans << endl;
 }
