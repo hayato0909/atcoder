@@ -3,32 +3,24 @@ using namespace std;
 
 int main() {
     int q; cin >> q;
-    map<int, int> m;
-    int mode,x,c;
-    vector<int> v;
+    multiset<int> st;
+    int mode, x, c; 
 
     for(int i=0;i<q;i++) {
         cin >> mode;
         if(mode == 1) {
             cin >> x;
-            if(m[x] == 0) {
-                int idx = lower_bound(v.begin(), v.end(), x) -  v.begin();
-                if(idx < v.size()) v.insert(v.begin()+idx, x);
-                else v.push_back(x);
-            }
-            m[x]++;
+            st.insert(x);
         } else if(mode == 2) {
-            cin >> x >> c;
-            if(m[x] > c) m[x] -= c; 
-            else {
-                if(m[x] != 0) {
-                    int idx = lower_bound(v.begin(), v.end(), x) - v.begin();
-                    v.erase(v.begin()+idx);
-                }
-                m[x] = 0;
+            cin >> x >> c; 
+            while(c > 0 && st.find(x) != st.end()) {
+                st.erase(st.find(x));
+                c--;
             }
         } else {
-            cout << v[v.size()-1] - v[0] << endl;
+            multiset<int>::iterator i = st.end();
+            i--;
+            cout << *i - *st.begin() << endl;
         }
     }
 }
