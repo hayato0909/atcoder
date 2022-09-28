@@ -2,10 +2,13 @@
 using namespace std;
 
 int main() {
-  int n; cin >> n;
-  if(n % 4 == 2) cout << n << endl;
-  else {
-    while(n % 4 != 2) n++;
-    cout << n << endl;
-  }
+    map<string, int> m;
+    m["Monday"] = 5;
+    m["Tuesday"] = 4;
+    m["Wednesday"] = 3;
+    m["Thursday"] = 2;
+    m["Friday"] = 1;
+    string s;
+    cin >> s;
+    cout << m[s] << endl;
 }

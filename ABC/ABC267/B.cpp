@@ -1,27 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 int main() {
-    int n, m;
-    cin >> n >> m;
-    bool v[n+1][n+1];
-    for(int i=0;i<=n;i++) {
-        for(int j=0;j<=n;j++) {
-            v[i][j] = false;
-        }
-    }
-    int u, w;
-    for(int i=0;i<m;i++) {
-        cin >> u >> w;
-        v[u][w] = true;
-        v[w][u] = true;
-    }
+    string s; cin >> s;
+    int num[7];
+    num[0] = s[6] - '0';
+    num[1] = s[3] - '0';
+    num[2] = (s[7] - '0') + (s[1] - '0');
+    num[3] = s[4] - '0';
+    num[4] = (s[8] - '0') + (s[2] - '0');
+    num[5] = s[5] - '0';
+    num[6] = s[9] - '0';
 
-    int ans = 0;
-    for(int i=1;i<=n;i++) {
-        for(int j=i+1;j<=n;j++) {
-            for(int k=j+1;k<=n;k++) {
-                if(v[i][j] && v[j][k] && v[k][i]) ans++;
+    string ans = "No";
+    if(s[0] == '0') {
+        for(int i=0;i<6;i++) {
+            for(int j=i+2;j<=6;j++) {
+                if(num[i] != 0 && num[j] != 0) {
+                    for(int k=i+1;k<j;k++) {
+                        if(num[k] == 0) ans = "Yes";
+                    }
+                }
             }
         }
     }
