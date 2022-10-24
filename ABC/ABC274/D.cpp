@@ -15,7 +15,7 @@ int main(){
     int a[n+1];
     rep(i, 1, n+1) cin >> a[i];
     int num[n+1][20*n + 1];
-    rep(i, 0, n+1) rep(j, 0, 20*n+1) num[i][j] = 0;
+    rep(i, 0, n+1) rep(j, 0, 20*n[+]1) num[i][j] = 0;
     num[1][a[1]+10*n] = 1;
     int fin;
     for(int i=2;2*i-1<=n;i++) {
