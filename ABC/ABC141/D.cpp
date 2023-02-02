@@ -9,11 +9,6 @@ using namespace atcoder;
 typedef long long ll;
 typedef pair<int, ll> P;
 
-ll gcd(ll a, ll b) {
-    if (b == 0) return a;
-    else return gcd(b, a%b);
-}
-
 int main() {
     int n, m; cin >> n >> m;
     vector<int> a(n);
