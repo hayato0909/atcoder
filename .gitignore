@@ -2,4 +2,4 @@ test/
 .vscode
 library/
 test/test_rust
-test_rust/
+test/test_rust/src/main.rs
