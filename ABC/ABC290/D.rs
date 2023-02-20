@@ -18,8 +18,9 @@ fn main() {
         input! {
             n: i64,
             d: i64,
-            k: i64,
+            mut k: i64,
         }
+        k -= 1;
         let a = n / gcd(n, d);
         println!("{}", d*k%n+k/a);
     }
